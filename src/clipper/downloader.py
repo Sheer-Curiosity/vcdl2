@@ -9,7 +9,7 @@ def downloadClips(startTimestamps: list, runtimeTimestamps: list, links: list, f
 	else:
 		if not os.path.isdir('./vcdl_temp'):
 			os.mkdir('./vcdl_temp')
-		if len(links[0]) > 1:
+		if len(links[0]) == 2:
 			print(f"[DOWNLOADER]: {len(startTimestamps)} clips found to download")
 			for idx, stmp in enumerate(startTimestamps):
 				print(f"[DOWNLOADER]: Downloading clip {idx+1}...")
@@ -37,12 +37,12 @@ def downloadClips(startTimestamps: list, runtimeTimestamps: list, links: list, f
 						outbuff += dlProcOutput
 				print(outbuff.decode('utf-8'), end='')
 			return (len(startTimestamps))
-		else:
+		elif len(links[0]) == 1:
 			print(f"[DOWNLOADER]: {len(startTimestamps)} clips found to download")
 			for idx, stmp in enumerate(startTimestamps):
 				print(f"[DOWNLOADER]: Downloading clip {idx+1}...")
 				videoInput = ffmpeg.input(links[0][0], ss=stmp, t=runtimeTimestamps[idx])
-				vcodec = 'copy'
+				vcodec = 'libx264'
 				if stmp == '00:00:00.00':
 					vcodec = 'copy'
 				downloadProc = (
@@ -64,4 +64,5 @@ def downloadClips(startTimestamps: list, runtimeTimestamps: list, links: list, f
 						outbuff += dlProcOutput
 				print(outbuff.decode('utf-8'), end='')
 			return (len(startTimestamps))
-		
+		else:
+			print('[DOWNLOADER] null')

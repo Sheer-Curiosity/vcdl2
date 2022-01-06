@@ -23,6 +23,7 @@ argParser.add_argument('-o', '--output-title', default='output')
 argParser.add_argument('-p', '--padding', default=5, type=int, choices=range(0, 31), metavar='[0-30]')
 argParser.add_argument('-ext', '--output-file-extension', default='mp4', type=str, choices=['mp4', 'mkv'], metavar='[mp4, mkv]')
 argParser.add_argument('--debug', action='store_true', help='prints more detailed information for debugging')
+argParser.add_argument('--no-gui', action='store_true')
 args = argParser.parse_args()
 
 def runClipper(video_links: list, timestamps: str):
@@ -34,10 +35,10 @@ def runClipper(video_links: list, timestamps: str):
 	for i in video_links:
 		urlLinks.append(getAVUrls(i))
 	
-	startTs, runtimeTs = parseTimestamps(timestamps, len(urlLinks), args.padding )
+	startTs, runtimeTs = parseTimestamps(timestamps, len(urlLinks), args.padding)
 	numClips = downloadClips(startTs, runtimeTs, urlLinks, ffmpeg_path)
 	if numClips > 1:
-		mergeClips(numClips, args.output_title, ffmpeg_path)
+		mergeClips(numClips, args.output_title, ffmpeg_path, args.output_file_extension)
 	else:
 		if os.path.exists(f"./{args.output_title}.mp4"):
 			os.remove(f"./{args.output_title}.mp4")

@@ -1,7 +1,7 @@
 import ffmpeg
 import os
 
-def mergeClips(numClips: int, outputName: str, ffmpeg_path: str):
+def mergeClips(numClips: int, outputName: str, ffmpeg_path: str, outputFileExt: str):
 	tempdirFiles = [f for f in os.listdir('./vcdl_temp') if os.path.isfile(os.path.join('./vcdl_temp', f))]
 	videoFiles = []
 	concatIn = []
@@ -23,7 +23,7 @@ def mergeClips(numClips: int, outputName: str, ffmpeg_path: str):
 	process = (
 	ffmpeg
 		.concat(*concatIn, v=1, a=1)
-		.output(f"./{outputName}.mp4")
+		.output(f"./{outputName}.{outputFileExt}")
 		.global_args('-hide_banner', '-loglevel', 'quiet', '-stats', '-y', '-crf', '18')
 		.run_async(cmd=ffmpeg_path, quiet=True)
 	)

@@ -1,7 +1,8 @@
 __version = 'DEV-0.2.8'
+__revision = '4'
 
 def versionInfo():
-	return (f"[DEBUG]: Current Major Version: {__version}\n")
+	return (f"[DEBUG]: Current Version: {__version}R{__revision}\n")
 
 def generalInfo():
 	return(
