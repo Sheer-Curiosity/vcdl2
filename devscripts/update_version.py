@@ -1,3 +1,4 @@
+# Most of this file was copied directly from the yt-dlp repo, so thank you to them for this.
 from datetime import datetime
 import subprocess
 import sys

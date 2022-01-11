@@ -2,15 +2,9 @@ def versionInfo():
 	return (f"[DEBUG]: Current Version: {read_version()}\n")
 
 def generalInfo():
-	return(
-	'''Written By: Sheer Curiosity
-Tested By: Sheer Curiosity, Chimatta
-Quote Of The Version:
-  "I wrote most of this program in
-  24 hours over the span of 3 days,
-  powered by nothing but eurobeat
-  and determination."
-  - Sheer Curiosity\n
+	return('''
+[INFO]: Written By: Sheer Curiosity
+[INFO]: Tested By: Sheer Curiosity, Chimatta
 	''')
 
 def read_version():

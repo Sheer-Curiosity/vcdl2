@@ -1,7 +1,7 @@
 import ffmpeg
 import os
 
-def downloadClips(startTimestamps: list, runtimeTimestamps: list, links: list, ffmpeg_path: str, id_list=[]):
+def downloadClips(startTimestamps: list, runtimeTimestamps: list, links: list, ffmpeg_path: str):
 	if len(links) > 1:
 		# TODO
 		print('[DOWNLOADER]: Funtionality not yet implemented')
